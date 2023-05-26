@@ -2,6 +2,7 @@ import React from 'react'
 import { Container, StyledMapView } from './styles'
 import useMapScreen from '@/hooks/useMapScreen'
 import RoundButton from '@/components/RoundButton';
+import MapSearchBar from '@/components/MapSearchBar';
 
 const MapScreen = () => {
     const { models, operations } = useMapScreen();
@@ -15,7 +16,8 @@ const MapScreen = () => {
                 showsMyLocationButton={false}
                 showsCompass={false}
             />
-            <RoundButton icon='ios-menu-outline' />
+            <RoundButton icon='ios-menu-outline' onPress={operations.handleMapSearchBarPress} />
+            <MapSearchBar onPress={() => console.log('press')} />
         </Container>
     )
 }

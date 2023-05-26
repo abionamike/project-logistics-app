@@ -1,12 +1,21 @@
 const pallete = {
     white: "#FFF",
-    black: "#000"
+    black: "#000",
+    grey: "rgba(34, 34, 34, 0.8)"
 }
 
 export const colors = {
+    typography: {
+        body: pallete.grey
+    },
     common: {
-        backgroundColor: pallete.white,
+        background: pallete.white,
         shadowDefault: pallete.black,
+    },
+    components: {
+        mapSearchBar: {
+            squareColor: pallete.black
+        }
     }
 }
 

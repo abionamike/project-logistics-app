@@ -7,6 +7,7 @@ const LONGITUDE_DELTA = 0.005;
 export const useMapScreen = () => {
     const mapRef = useRef<MapView>(null);
     const [userLocation, setUserLocation] = useState<UserLocationChangeEvent["nativeEvent"]["coordinate"]>();
+    const [modalVisible, setModalVisible] = useState(false);
 
     useEffect(() => {
         if(userLocation) {
@@ -23,12 +24,18 @@ export const useMapScreen = () => {
         setUserLocation(coordinate)
     }
 
+    const handleMapSearchBarPress = () => {
+        setModalVisible(true);
+    }
+
     return {
         models: {
-            mapRef
+            mapRef,
+            modalVisible
         },
         operations: {
             handleUserLocationChange,
+            handleMapSearchBarPress
         },
     }
 }
