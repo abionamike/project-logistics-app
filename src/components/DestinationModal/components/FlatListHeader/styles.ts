@@ -2,10 +2,12 @@ import styled from "@emotion/native";
 import { Dimensions } from "react-native";
 import { scale } from 'react-native-size-matters'
 
-export const Container = styled.View({
-    width: Dimensions.get("window").width - scale(50),
-    alignSelf: 'center'
-});
+export const Container = styled.View(({ theme }) => ({
+    width: '100%',
+    alignSelf: 'center',
+    backgroundColor: theme.colors.common.background,
+    alignItems: 'center'
+}));
 
 export const InputContainer = styled.View({
     flex: 1

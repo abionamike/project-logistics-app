@@ -4,7 +4,8 @@ import { scale } from "react-native-size-matters";
 export const Container = styled.TouchableOpacity({
     flexDirection: 'row',
     alignItems: 'center',
-    height: scale(50)
+    height: scale(50),
+    paddingHorizontal: scale(15)
 });
 
 export const IconContainer = styled.View(({ theme }) => ({
@@ -15,6 +16,11 @@ export const IconContainer = styled.View(({ theme }) => ({
     justifyContent: 'center',
     backgroundColor: theme.colors.components.placeItem.iconBackground
 }));
+
+export const TextContainer = styled.View({
+    flex: 1,
+    flexShrink: 1
+})
 
 export const IconImage = styled.Image(({ theme }) => ({
     width: scale(20),

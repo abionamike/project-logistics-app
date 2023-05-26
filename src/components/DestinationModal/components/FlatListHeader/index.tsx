@@ -33,9 +33,10 @@ const FlatListHeader = ({ destinationValue, onDestinationTextChange }: FlatListH
                         />
                     </InputContainer>
                 </HorizontalContainer>
+                <Spacer height={scale(15)} />
+                <Divider />
             </Container>
-            <Spacer height={scale(10)} />
-            <Divider />
+            <Spacer height={scale(15)} />
         </>
     )
 }
