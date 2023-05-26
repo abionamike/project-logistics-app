@@ -1,19 +1,21 @@
 import { useEffect, useRef, useState } from 'react'
 import MapView, { UserLocationChangeEvent } from 'react-native-maps'
+import { useUserLocationStateContext } from '../context/UserLocationStateContext';
 
 const LATITUDE_DELTA = 0.0022;
 const LONGITUDE_DELTA = 0.005;
 
 export const useMapScreen = () => {
+    const { userLocation, setUserLocation } = useUserLocationStateContext();
+    
     const mapRef = useRef<MapView>(null);
-    const [userLocation, setUserLocation] = useState<UserLocationChangeEvent["nativeEvent"]["coordinate"]>();
     const [modalVisible, setModalVisible] = useState(false);
 
     useEffect(() => {
         if(userLocation) {
             mapRef.current?.animateToRegion({
-                longitude: userLocation.longitude,
-                latitude: userLocation.latitude,
+                longitude: userLocation.coords.longitude,
+                latitude: userLocation.coords.latitude,
                 longitudeDelta: LONGITUDE_DELTA,
                 latitudeDelta: LATITUDE_DELTA,
             })
@@ -25,7 +27,14 @@ export const useMapScreen = () => {
     }
 
     const handleUserLocationChange = ({ nativeEvent: { coordinate } }: UserLocationChangeEvent) => {
-        setUserLocation(coordinate)
+        if(coordinate) {
+            setUserLocation({ 
+                coords: {
+                    latitude: coordinate.latitude,
+                    longitude: coordinate.longitude
+                }
+            });
+        }
     }
 
     const handleMapSearchBarPress = () => {
