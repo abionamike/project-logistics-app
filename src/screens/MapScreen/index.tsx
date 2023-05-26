@@ -1,19 +1,22 @@
 import React from 'react'
-import { StyledMapView } from './styles'
+import { Container, StyledMapView } from './styles'
 import useMapScreen from '@/hooks/useMapScreen'
+import RoundButton from '@/components/RoundButton';
 
 const MapScreen = () => {
     const { models, operations } = useMapScreen();
 
     return (
-        <StyledMapView 
-            ref={models.mapRef}
-            showsUserLocation 
-            onUserLocationChange={operations.handleUserLocationChange} 
-            showsMyLocationButton={false}
-            showsCompass={false}
-
-        />
+        <Container>
+            <StyledMapView 
+                ref={models.mapRef}
+                showsUserLocation 
+                onUserLocationChange={operations.handleUserLocationChange} 
+                showsMyLocationButton={false}
+                showsCompass={false}
+            />
+            <RoundButton icon='ios-menu-outline' />
+        </Container>
     )
 }
 

@@ -1,23 +1,15 @@
-import ButtonComponent from "@/components/button";
 import MapScreen from "@/screens/MapScreen";
 import LocationPermissionService from "@/services/LocationPermissionService";
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { ThemeProvider } from "./src/theme/ThemeProvider";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function App() {
   return (
-    <>
-      <MapScreen />
-      <LocationPermissionService />
-    </>
+    <SafeAreaProvider>
+      <ThemeProvider>
+        <MapScreen />
+        <LocationPermissionService />
+      </ThemeProvider>
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
