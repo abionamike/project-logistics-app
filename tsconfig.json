@@ -7,7 +7,7 @@
       "@/components/*": ["src/components/*"],
       "@/services/*": ["src/services/*"],
       "@/hooks/*": ["src/hooks/*"],
-      "@/common/*": ["src/common/*"],
+      "@/common/*": ["src/components/common/*"],
       "@/screens/*": ["src/screens/*"],
       "@/src/*": ["src/*"]
     },

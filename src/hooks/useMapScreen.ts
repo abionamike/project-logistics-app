@@ -20,6 +20,10 @@ export const useMapScreen = () => {
         }
     }, [userLocation]);
 
+    const closeDestinationModal = () => {
+        setModalVisible(false);
+    }
+
     const handleUserLocationChange = ({ nativeEvent: { coordinate } }: UserLocationChangeEvent) => {
         setUserLocation(coordinate)
     }
@@ -35,7 +39,8 @@ export const useMapScreen = () => {
         },
         operations: {
             handleUserLocationChange,
-            handleMapSearchBarPress
+            handleMapSearchBarPress,
+            closeDestinationModal
         },
     }
 }
