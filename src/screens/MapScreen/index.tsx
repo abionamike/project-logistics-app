@@ -35,10 +35,16 @@ const MapScreen = () => {
                     apikey='AIzaSyAwYx76FgyMCWngLIUJyspK_p71Rtwh'
                     strokeColor={theme.colors.screens.mapScreen.directionsStroke}
                     strokeWidth={scale(5)}
+                    onReady={operations.handleMapDirectionsReady}
                 />
             </StyledMapView>
-            <RoundButton icon='ios-menu-outline' />
-            <MapSearchBar onPress={operations.handleMapSearchBarPress} />
+            {models.isRouteVisible ? null : (
+                <MapSearchBar onPress={operations.handleMapSearchBarPress} />
+            )}
+            <RoundButton 
+                onPress={operations.handleRoundButtonPress}
+                icon={models.isRouteVisible ? 'arrow-back-outline' : 'ios-menu-outline'}
+            />
             <DesinationModal 
                 visible={models.modalVisible} 
                 closeModal={operations.closeDestinationModal} 

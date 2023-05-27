@@ -43,6 +43,8 @@ const DesinationModal = ({ visible, closeModal, onPress }: DesinationModalProps)
         <Modal onRequestClose={closeModal} visible={visible} animationType='fade'>
             <StyledFlatList 
                 stickyHeaderIndices={[0]}
+                keyboardShouldPersistTaps="always"
+                keyboardDismissMode="interactive"
                 data={models.textSearchQueryResponseData} 
                 renderItem={renderFlatListItem} 
                 ItemSeparatorComponent={ItemSeperatorComponent}

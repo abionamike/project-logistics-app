@@ -1,18 +1,38 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import MapView, { LatLng, UserLocationChangeEvent } from 'react-native-maps'
 import { useUserLocationStateContext } from '../context/UserLocationStateContext';
+import { MapDirectionsResponse } from 'react-native-maps-directions';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { scale } from 'react-native-size-matters';
 
 const LATITUDE_DELTA = 0.0022;
 const LONGITUDE_DELTA = 0.005;
 
 export const useMapScreen = () => {
     const { userLocation, setUserLocation } = useUserLocationStateContext();
-    
+    const insets = useSafeAreaInsets();
+
     const mapRef = useRef<MapView>(null);
     const [modalVisible, setModalVisible] = useState(false);
     const [mapMarkers, setMapMarkers] = useState<LatLng[]>([]);
+    const [mapDirections, setMapDirections] = useState<MapDirectionsResponse>();
+
+    const isRouteVisible = mapMarkers.length === 2;
 
     useEffect(() => {
+        if(mapDirections && mapDirections.coordinates) {
+            mapRef.current?.fitToCoordinates(mapDirections.coordinates, {
+                edgePadding: {
+                    top: insets.top + scale(15),
+                    bottom: scale(15),
+                    left: scale(15),
+                    right: scale(15)
+                }
+            });
+        }
+    }, [mapDirections?.coordinates, insets.top]);
+
+    const centerTouserLocation = useCallback(() => {
         if(userLocation) {
             mapRef.current?.animateToRegion({
                 longitude: userLocation.coords.longitude,
@@ -23,12 +43,16 @@ export const useMapScreen = () => {
         }
     }, [userLocation]);
 
+    useEffect(() => {
+        centerTouserLocation();
+    }, [centerTouserLocation]);
+
     const closeDestinationModal = () => {
         setModalVisible(false);
     }
 
     const handleUserLocationChange = ({ nativeEvent: { coordinate } }: UserLocationChangeEvent) => {
-        if(coordinate) {
+        if(coordinate && !modalVisible && !isRouteVisible) {
             setUserLocation({ 
                 coords: {
                     latitude: coordinate.latitude,
@@ -51,17 +75,31 @@ export const useMapScreen = () => {
         }
     }
 
+    const handleMapDirectionsReady = (routeInfo: MapDirectionsResponse) => {
+        setMapDirections(routeInfo);
+    }
+
+    const handleRoundButtonPress = () => {
+        if(isRouteVisible) {
+            setMapMarkers([]);
+            centerTouserLocation();
+        }
+    }
+
     return {
         models: {
             mapRef,
             modalVisible,
-            mapMarkers
+            mapMarkers,
+            isRouteVisible
         },
         operations: {
             handleUserLocationChange,
             handleMapSearchBarPress,
             closeDestinationModal,
-            handlePlaceItemPress
+            handlePlaceItemPress,
+            handleMapDirectionsReady,
+            handleRoundButtonPress
         },
     }
 }

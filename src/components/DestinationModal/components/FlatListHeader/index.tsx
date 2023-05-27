@@ -16,7 +16,7 @@ const FlatListHeader = ({ destinationValue, onDestinationTextChange }: FlatListH
     return (
         <>
             <Container>
-                <Spacer height={insets.top + scale(60)} />
+                <Spacer height={(insets.top || scale(15)) + scale(60)} />
                 <HorizontalContainer>
                     <DecoratorContainer>
                         <DecoratorCircle />
