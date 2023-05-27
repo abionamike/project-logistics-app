@@ -30,6 +30,7 @@ const FlatListHeader = ({ destinationValue, onDestinationTextChange }: FlatListH
                         <DestinationInput 
                             value={destinationValue}  
                             onChangeText={onDestinationTextChange}
+                            autoFocus
                         />
                     </InputContainer>
                 </HorizontalContainer>
