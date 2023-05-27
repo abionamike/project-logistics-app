@@ -36,6 +36,11 @@ export const colors = {
             iconBackground: pallete.blue,
             iconTint: pallete.white
         }
+    },
+    screens: {
+        mapScreen: {
+            directionsStroke: pallete.blue
+        }
     }
 }
 

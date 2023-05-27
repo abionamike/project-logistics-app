@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import MapView, { UserLocationChangeEvent } from 'react-native-maps'
+import MapView, { LatLng, UserLocationChangeEvent } from 'react-native-maps'
 import { useUserLocationStateContext } from '../context/UserLocationStateContext';
 
 const LATITUDE_DELTA = 0.0022;
@@ -10,6 +10,7 @@ export const useMapScreen = () => {
     
     const mapRef = useRef<MapView>(null);
     const [modalVisible, setModalVisible] = useState(false);
+    const [mapMarkers, setMapMarkers] = useState<LatLng[]>([]);
 
     useEffect(() => {
         if(userLocation) {
@@ -41,15 +42,26 @@ export const useMapScreen = () => {
         setModalVisible(true);
     }
 
+    const handlePlaceItemPress = (coords: LatLng) => {
+        return () => {
+            if(userLocation) {
+                setMapMarkers([userLocation?.coords, coords]);
+                setModalVisible(false);
+            }
+        }
+    }
+
     return {
         models: {
             mapRef,
-            modalVisible
+            modalVisible,
+            mapMarkers
         },
         operations: {
             handleUserLocationChange,
             handleMapSearchBarPress,
-            closeDestinationModal
+            closeDestinationModal,
+            handlePlaceItemPress
         },
     }
 }
