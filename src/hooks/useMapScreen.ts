@@ -67,11 +67,9 @@ export const useMapScreen = () => {
     }
 
     const handlePlaceItemPress = (coords: LatLng) => {
-        return () => {
-            if(userLocation) {
-                setMapMarkers([userLocation?.coords, coords]);
-                setModalVisible(false);
-            }
+        if(userLocation) {
+            setMapMarkers([userLocation?.coords, coords]);
+            setModalVisible(false);
         }
     }
 

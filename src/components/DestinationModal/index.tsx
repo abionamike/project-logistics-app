@@ -14,13 +14,13 @@ import { LatLng } from 'react-native-maps';
 interface DesinationModalProps {
     visible: boolean;
     closeModal: () => void;
-    onPress: (coords: LatLng) => () => void
+    onPress: (coords: LatLng) => void
 }
 
 const ItemSeperatorComponent = () => <Spacer height={scale(17)} />
 
 const DesinationModal = ({ visible, closeModal, onPress }: DesinationModalProps) => {
-    const { models, operations } = useDestinationModal();
+    const { models, operations } = useDestinationModal({ onPress });
     const insets = useSafeAreaInsets();
     const styles = useStyles(insets);
     
@@ -31,10 +31,7 @@ const DesinationModal = ({ visible, closeModal, onPress }: DesinationModalProps)
                 name={item.name}
                 iconUrl={item.icon}
                 address={item.formatted_address}
-                onPress={onPress({
-                    latitude: item.geometry.location.lat,
-                    longitude: item.geometry.location.long
-                })}
+                onPress={operations.handlePlaceItemPress(item)}
             />
         );
     }
