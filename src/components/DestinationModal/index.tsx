@@ -20,7 +20,7 @@ interface DesinationModalProps {
 const ItemSeperatorComponent = () => <Spacer height={scale(17)} />
 
 const DesinationModal = ({ visible, closeModal, onPress }: DesinationModalProps) => {
-    const { models, operations } = useDestinationModal({ onPress });
+    const { models, operations } = useDestinationModal({ onPress, closeModal });
     const insets = useSafeAreaInsets();
     const styles = useStyles(insets);
     
@@ -37,7 +37,12 @@ const DesinationModal = ({ visible, closeModal, onPress }: DesinationModalProps)
     }
     
     return (
-        <Modal onRequestClose={closeModal} visible={visible} animationType='fade'>
+        <Modal
+            onDismiss={operations.handleModalDismiss} 
+            onRequestClose={closeModal} 
+            visible={visible} 
+            animationType='fade'
+        >
             <StyledFlatList 
                 stickyHeaderIndices={[0]}
                 keyboardShouldPersistTaps="always"
@@ -55,7 +60,7 @@ const DesinationModal = ({ visible, closeModal, onPress }: DesinationModalProps)
             />
             <RoundButton 
                 icon='arrow-back-outline' 
-                onPress={closeModal}
+                onPress={operations.handleRoundButtonPress}
             />
         </Modal>
     )

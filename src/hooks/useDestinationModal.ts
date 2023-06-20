@@ -7,13 +7,14 @@ import { TextSearchItem } from "../types/TextSearchItem";
 
 type UseDestinationModal = {
     onPress: (coords: LatLng) => void; 
+    closeModal: () => void;
 }
 
-export const useDestinationModal = ({ onPress }: UseDestinationModal) => {
+export const useDestinationModal = ({ onPress, closeModal }: UseDestinationModal) => {
     const [destinationInputValue, setDestinationInputValue] = useState("");
     const [debouncedDestinationInputValue] = useDebounce(destinationInputValue, 500);
 
-    const { searchHistoryItems, addItemToSearchHistory } = useSearchHistory("places");
+    const { searchHistoryItems, addItemToSearchHistory } = useSearchHistory("places", "place_id");
 
     const { responseData } = useTextSearchQuery(debouncedDestinationInputValue);
     
@@ -31,12 +32,25 @@ export const useDestinationModal = ({ onPress }: UseDestinationModal) => {
             addItemToSearchHistory(item);
         }
     }
-    
+
+    const handleRoundButtonPress = () => {
+        closeModal();
+    }
+
+    const handleModalDismiss = () => {
+        setDestinationInputValue("");
+    }
+     
     return {
         models: { 
             destinationInputValue, 
             textSearchQueryResponseData: responseData?.results || searchHistoryItems 
         },
-        operations: { handleDestinationInputTextChange, handlePlaceItemPress }
+        operations: { 
+            handleDestinationInputTextChange, 
+            handlePlaceItemPress,
+            handleRoundButtonPress,
+            handleModalDismiss 
+        }
     }
 }

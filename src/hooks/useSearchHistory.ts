@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { getItemFromStorage, saveItemToStorage } from "../utils/storage";
 
-export const useSearchHistory = (key: string) => {
+export const useSearchHistory = (key: string, idKey: string) => {
     const [searchHistoryItems, setSearchHistoryItems] = useState<any[]>([]);
 
     useEffect(() => {
@@ -19,7 +19,7 @@ export const useSearchHistory = (key: string) => {
 
     const addItemToSearchHistory = (item: any) => {
         const filteredData = searchHistoryItems?.filter(searchItem => {
-            return searchItem.place_id !== item.place_id;
+            return searchItem[idKey] !== item[idKey];
         });
 
         setSearchHistoryItems([item, ...filteredData]);
