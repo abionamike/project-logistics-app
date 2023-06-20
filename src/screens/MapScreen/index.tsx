@@ -38,7 +38,7 @@ const MapScreen = () => {
                     onReady={operations.handleMapDirectionsReady}
                 />
             </StyledMapView>
-            {models.isRouteVisible ? null : (
+            {models.isRouteVisible || models.modalVisible ? null : (
                 <MapSearchBar onPress={operations.handleMapSearchBarPress} />
             )}
             <RoundButton 

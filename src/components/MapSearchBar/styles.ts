@@ -2,12 +2,13 @@ import styled from "@emotion/native"
 import { Dimensions } from "react-native";
 import { EdgeInsets } from "react-native-safe-area-context"
 import { scale } from 'react-native-size-matters'
+import Animated from "react-native-reanimated"
 
 interface ContainerProps {
     insets: EdgeInsets;
 }
 
-export const Container = styled.View<ContainerProps>(({ insets }) => ({
+export const Container = styled(Animated.View)<ContainerProps>(({ insets }) => ({
     top: (insets.top || scale(15)) + scale(60),
     position: 'absolute',
     alignSelf: 'center'
