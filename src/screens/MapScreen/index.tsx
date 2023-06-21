@@ -8,6 +8,7 @@ import { Marker } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import { useTheme } from '@emotion/react';
 import { scale } from 'react-native-size-matters';
+import ChooseRideBottomSheet from '@/components/ChooseRideBottomSheet';
 
 const MapScreen = () => {
     const { models, operations } = useMapScreen();
@@ -50,7 +51,8 @@ const MapScreen = () => {
                 closeModal={operations.closeDestinationModal} 
                 onPress={operations.handlePlaceItemPress}
             />
-        </Container>
+            {models.isRouteVisible ? <ChooseRideBottomSheet onChange={operations.handleBottomSheetChange} /> : null}
+        </Container> 
     )
 }
 

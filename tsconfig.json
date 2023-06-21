@@ -5,6 +5,8 @@
     "baseUrl": ".",
     "paths": {
       "@/components/*": ["src/components/*"],
+      "@/constants/*": ["src/constants/*"],
+      "@/components/*": ["src/components/*"],
       "@/services/*": ["src/services/*"],
       "@/hooks/*": ["src/hooks/*"],
       "@/common/*": ["src/components/common/*"],
