@@ -9,12 +9,12 @@ export const ridesData: Section[] = [
         data: [
             {
                 id: '1',
-                type: 'UberX',
+                type: 'X',
                 maxPassengers: 4,
                 price: {
                     perKm: 0.8,
                     perMinute: 0.5,
-                    currecny: '$'
+                    currency: '₦'
                 },
                 eta: 5,
                 description: 'Good cars, good prices',
@@ -26,7 +26,7 @@ export const ridesData: Section[] = [
                 price: {
                     perKm: 1.2,
                     perMinute: 0.7,
-                    currecny: '$'
+                    currency: '₦'
                 },
                 eta: 5,
                 description: 'Good cars, good prices',
@@ -38,7 +38,7 @@ export const ridesData: Section[] = [
                 price: {
                     perKm: 1,
                     perMinute: 0.6,
-                    currecny: '$'
+                    currency: '₦'
                 },
                 eta: 6,
                 description: 'Good cars, good prices',
@@ -50,24 +50,24 @@ export const ridesData: Section[] = [
         data: [
             {
                 id: '4',
-                type: 'Uber parcel',
+                type: ' parcel',
                 maxPassengers: null,
                 price: {
                     perKm: 0.8,
                     perMinute: 0.5,
-                    currecny: '$'
+                    currency: '₦'
                 },
                 eta: 5,
                 description: 'Good cars, good prices',
             },
             {
                 id: '5',
-                type: 'Uber Pets',
+                type: ' Pets',
                 maxPassengers: 3,
                 price: {
                     perKm: 0.9,
                     perMinute: 0.5,
-                    currecny: '$'
+                    currency: '₦'
                 },
                 eta: 5,
                 description: 'Good cars, good prices',
@@ -79,7 +79,7 @@ export const ridesData: Section[] = [
                 price: {
                     perKm: 1,
                     perMinute: 0.6,
-                    currecny: '$'
+                    currency: '₦'
                 },
                 eta: 6,
                 description: 'Good cars, good prices',
@@ -91,7 +91,7 @@ export const ridesData: Section[] = [
                 price: {
                     perKm: 2,
                     perMinute: 0.9,
-                    currecny: '$'
+                    currency: '₦'
                 },
                 eta: 15,
                 description: 'Good cars, good prices',
@@ -103,12 +103,12 @@ export const ridesData: Section[] = [
         data: [
             {
                 id: '8',
-                type: 'Uber Scooter',
+                type: ' Scooter',
                 maxPassengers: 1,
                 price: {
                     perKm: 0.5,
                     perMinute: 0.3,
-                    currecny: '$'
+                    currency: '₦'
                 },
                 eta: 1,
                 description: 'Good cars, good prices',

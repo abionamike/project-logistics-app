@@ -14,8 +14,6 @@ const MapScreen = () => {
     const { models, operations } = useMapScreen();
     const theme = useTheme();
 
-    console.log(models.mapMarkers)
-
     const renderMapMarkers = () => {
         return models.mapMarkers.map((item, index) => (
             <Marker coordinate={item} key={index} />
@@ -54,7 +52,7 @@ const MapScreen = () => {
                 closeModal={operations.closeDestinationModal} 
                 onPress={operations.handlePlaceItemPress}
             />
-            {models.isRouteVisible ? <ChooseRideBottomSheet onChange={operations.handleBottomSheetChange} /> : null}
+            {models.isRouteVisible ? <ChooseRideBottomSheet onChange={operations.handleBottomSheetChange} mapDirections={models.mapDirections} /> : null}
         </Container> 
     )
 }

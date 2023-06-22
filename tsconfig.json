@@ -8,6 +8,7 @@
       "@/constants/*": ["src/constants/*"],
       "@/components/*": ["src/components/*"],
       "@/services/*": ["src/services/*"],
+      "@/utils/*": ["src/utils/*"],
       "@/hooks/*": ["src/hooks/*"],
       "@/common/*": ["src/components/common/*"],
       "@/screens/*": ["src/screens/*"],

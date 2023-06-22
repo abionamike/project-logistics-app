@@ -4,6 +4,7 @@ import Spacer from '@/components/common/Spacer';
 import { scale } from 'react-native-size-matters';
 import CustomText from '@/components/common/CustomText';
 import { Ionicons } from '@expo/vector-icons'
+import { useDate } from '@/hooks/useDate';
 
 interface ChooseRideItemProps {
     title: string;
@@ -16,8 +17,10 @@ interface ChooseRideItemProps {
     variant: "compact" | "expanded"
 }
 
-const ChooseRideItem = ({ title, description, price, selected, onPress, maxPassengers, variant }: ChooseRideItemProps) => {
+const ChooseRideItem = ({ title, description, price, selected, onPress, maxPassengers, variant, eta }: ChooseRideItemProps) => {
+    const { date } = useDate();
     const isExtended = variant === "expanded"
+    const formatedEta = date.add(eta, "minute").format("HH:mm");
     
     return (
         <StyledPressable selected={selected} onPress={onPress}>
@@ -37,7 +40,7 @@ const ChooseRideItem = ({ title, description, price, selected, onPress, maxPasse
                             </>
                         ) : null}
                     </IconContainer>
-                    {!isExtended ? <CustomText variant='body'>14:50</CustomText> : null}
+                    {!isExtended ? <CustomText variant='body'>{selected ? `${formatedEta} • ${eta} mins to arrival` : formatedEta}</CustomText> : null}
                     {isExtended ? <CustomText variant='caption'>{description}</CustomText> : null}
                 </Container>
                 <CustomText variant='header'>{price}</CustomText>

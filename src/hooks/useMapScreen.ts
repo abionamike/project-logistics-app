@@ -90,7 +90,8 @@ export const useMapScreen = () => {
             mapRef,
             modalVisible,
             mapMarkers,
-            isRouteVisible
+            isRouteVisible,
+            mapDirections
         },
         operations: {
             handleUserLocationChange,
