@@ -22,7 +22,7 @@ export const useTextSearchQuery = (searchQuery: string) => {
                         params: {
                             query: searchQuery,
                             location: `${userLocation?.coords.latitude},${userLocation?.coords.longitude}`,
-                            key: "AIzaSyAwYx76FgyMCWngLIUJyspK_p71Rtwh-5c"
+                            key: "AIzaSyDNV5RAicLlVgHPF3OSLfNE78_F1dD8poo"
                         }
                     });
     

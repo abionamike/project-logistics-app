@@ -13,7 +13,7 @@ module.exports = function(api) {
             "@/hooks": "./src/hooks",
             "@/common": "./src/common",
             "@/screens": "./src/screens",
-            "@/assets": "./src/assets",
+            "@/assets": "./assets",
             "@/": "./src",
           }
         }

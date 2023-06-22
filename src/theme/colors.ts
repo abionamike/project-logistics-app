@@ -35,6 +35,10 @@ export const colors = {
         placeItem: {
             iconBackground: pallete.blue,
             iconTint: pallete.white
+        },
+        chooseRideItem: {
+            selectedBorderColor: pallete.black,
+            borderColor: pallete.white
         }
     },
     screens: {

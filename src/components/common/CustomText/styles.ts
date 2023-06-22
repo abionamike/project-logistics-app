@@ -16,4 +16,10 @@ export const TitleText = styled.Text(({ theme }) => ({
 export const CaptionText = styled.Text(({ theme }) => ({
     fontSize: scale(13),
     color: theme.colors.typography.body
+}));
+
+export const HeaderText = styled.Text(({ theme }) => ({
+    fontSize: scale(17),
+    color: theme.colors.typography.common,
+    fontWeight: "500"
 }))

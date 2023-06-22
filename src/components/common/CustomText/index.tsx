@@ -1,8 +1,8 @@
 import React from 'react'
-import { BodyText, CaptionText, TitleText } from './styles';
+import { BodyText, CaptionText, HeaderText, TitleText } from './styles';
 
 interface CustomTextProp {
-    variant: 'body' | 'title' | 'caption',
+    variant: 'body' | 'title' | 'caption' | 'header',
     children: string
 }
 const getComponent = (variant: CustomTextProp['variant']) => {
@@ -13,6 +13,8 @@ const getComponent = (variant: CustomTextProp['variant']) => {
             return TitleText;
         case "caption":
             return CaptionText;
+        case "header":
+            return HeaderText;
         default:
             return BodyText;
     }

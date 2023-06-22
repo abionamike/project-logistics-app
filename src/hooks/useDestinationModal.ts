@@ -26,7 +26,7 @@ export const useDestinationModal = ({ onPress, closeModal }: UseDestinationModal
         return () => {
             onPress({
                 latitude: item.geometry.location.lat,
-                longitude: item.geometry.location.long
+                longitude: item.geometry.location.lng
             });
     
             addItemToSearchHistory(item);

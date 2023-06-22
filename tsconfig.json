@@ -11,6 +11,7 @@
       "@/hooks/*": ["src/hooks/*"],
       "@/common/*": ["src/components/common/*"],
       "@/screens/*": ["src/screens/*"],
+      "@/assets/*": ["assets/*"],
       "@/src/*": ["src/*"]
     },
   },

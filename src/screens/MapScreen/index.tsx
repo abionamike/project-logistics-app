@@ -14,6 +14,8 @@ const MapScreen = () => {
     const { models, operations } = useMapScreen();
     const theme = useTheme();
 
+    console.log(models.mapMarkers)
+
     const renderMapMarkers = () => {
         return models.mapMarkers.map((item, index) => (
             <Marker coordinate={item} key={index} />
@@ -30,10 +32,11 @@ const MapScreen = () => {
                 showsCompass={false}
             >
                 {renderMapMarkers()}
+                {/* AIzaSyDNV5RAicLlVgHPF3OSLfNE78_F1dD8poo */}
                 <MapViewDirections 
                     origin={models.mapMarkers[0]} 
                     destination={models.mapMarkers[1]}
-                    apikey='AIzaSyAwYx76FgyMCWngLIUJyspK_p71Rtwh'
+                    apikey='AIzaSyDNV5RAicLlVgHPF3OSLfNE78_F1dD8poo'
                     strokeColor={theme.colors.screens.mapScreen.directionsStroke}
                     strokeWidth={scale(5)}
                     onReady={operations.handleMapDirectionsReady}
