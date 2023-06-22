@@ -12,6 +12,7 @@ interface ChooseRideBottomSheetProps {
 
 const ChooseRideBottomSheet = ({ onChange }: ChooseRideBottomSheetProps) => {
     const renderSectionItem: SectionListRenderItem<RideItem> = ({ item }) => {
+        console.log(item)
         return (
             <ChooseRideItem 
                 key={item.id} 
@@ -22,7 +23,7 @@ const ChooseRideBottomSheet = ({ onChange }: ChooseRideBottomSheetProps) => {
                 eta={item.eta}
                 description={item.description}
                 selected={item.id === '1'}
-                maxPassengers={item.maxpassengers}
+                maxPassengers={item.maxPassengers}
             />
         );
     }

@@ -30,7 +30,7 @@ const ChooseRideItem = ({ title, description, price, selected, onPress, maxPasse
                         <Spacer width={scale(5)} />
                         {maxPassengers && (selected || isExtended) ? (
                             <>
-                                <Ionicons name='person' size={14} />
+                                <Ionicons name="person" size={scale(14)} />
                                 <CustomText variant='body'>
                                     {maxPassengers.toString()}
                                 </CustomText>
