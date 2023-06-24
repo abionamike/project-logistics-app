@@ -7,6 +7,7 @@ import { SectionListRenderItem } from 'react-native';
 import { RideItem } from '@/src/types/rideItems';
 import { calculateRidePrice } from '@/utils/calculateRidePrice';
 import type { MapDirectionsResponse } from 'react-native-maps-directions';
+import { useChooseRideBottomSheet } from './useChooseRideBottomSheet';
 
 interface ChooseRideBottomSheetProps {
     onChange: (index: number) => void;
@@ -14,17 +15,19 @@ interface ChooseRideBottomSheetProps {
 }
 
 const ChooseRideBottomSheet = ({ onChange, mapDirections }: ChooseRideBottomSheetProps) => {
+    const { models, operations } = useChooseRideBottomSheet();
+    
     const renderSectionItem: SectionListRenderItem<RideItem> = ({ item }) => {
         return (
             <ChooseRideItem 
                 key={item.id} 
                 variant='compact' 
-                onPress={() => {}} 
+                onPress={operations.handleRideItemPress(item)} 
                 title={item.type}
                 price={calculateRidePrice(item.price, mapDirections)}
                 eta={item.eta}
                 description={item.description}
-                selected={item.id === '1'}
+                selected={item.id === models.selectedRide.id}
                 maxPassengers={item.maxPassengers}
             />
         );
