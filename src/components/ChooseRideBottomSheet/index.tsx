@@ -3,12 +3,13 @@ import BottomSheet, { BottomSheetSectionList } from '@gorhom/bottom-sheet'
 import { rideSheetSnapPoints } from '@/constants/bottomSheetSnapPoints';
 import { ridesData } from './mockData';
 import ChooseRideItem from './components/ChooseRideItem';
-import { SectionListRenderItem } from 'react-native';
+import { SectionListData, SectionListRenderItem } from 'react-native';
 import { RideItem } from '@/src/types/rideItems';
 import { calculateRidePrice } from '@/utils/calculateRidePrice';
 import type { MapDirectionsResponse } from 'react-native-maps-directions';
 import { useChooseRideBottomSheet } from './useChooseRideBottomSheet';
 import Header from './components/Header';
+import SectionHeader from './components/SectionHeader';
 
 interface ChooseRideBottomSheetProps {
     onChange: (index: number) => void;
@@ -17,6 +18,12 @@ interface ChooseRideBottomSheetProps {
 
 const ChooseRideBottomSheet = ({ onChange, mapDirections }: ChooseRideBottomSheetProps) => {
     const { models, operations } = useChooseRideBottomSheet();
+
+    const renderSectionHeader = ({ section }: { section: SectionListData<RideItem> }) => {
+        return (
+            <SectionHeader title={section.title} />
+        )
+    }
     
     const renderSectionItem: SectionListRenderItem<RideItem> = ({ item }) => {
         return (
@@ -42,6 +49,8 @@ const ChooseRideBottomSheet = ({ onChange, mapDirections }: ChooseRideBottomShee
                 }
                 renderItem={renderSectionItem}
                 sections={ridesData} 
+                renderSectionHeader={renderSectionHeader}
+                stickySectionHeadersEnabled={false}
             />
         </BottomSheet>
     )
