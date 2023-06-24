@@ -5,7 +5,6 @@ export const calculateRidePrice = (
     price: RideItemPrice,
     routeInfo?: MapDirectionsResponse
 ) => {
-    console.log(price)
     if(routeInfo) {
         const { distance, duration } = routeInfo;
 
