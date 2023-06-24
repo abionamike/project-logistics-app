@@ -8,6 +8,7 @@ import { RideItem } from '@/src/types/rideItems';
 import { calculateRidePrice } from '@/utils/calculateRidePrice';
 import type { MapDirectionsResponse } from 'react-native-maps-directions';
 import { useChooseRideBottomSheet } from './useChooseRideBottomSheet';
+import Header from './components/Header';
 
 interface ChooseRideBottomSheetProps {
     onChange: (index: number) => void;
@@ -36,6 +37,9 @@ const ChooseRideBottomSheet = ({ onChange, mapDirections }: ChooseRideBottomShee
     return (
         <BottomSheet index={1} onChange={onChange} snapPoints={rideSheetSnapPoints}>
             <BottomSheetSectionList 
+                ListHeaderComponent={
+                    <Header />
+                }
                 renderItem={renderSectionItem}
                 sections={ridesData} 
             />
