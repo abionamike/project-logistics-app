@@ -11,6 +11,7 @@ import { useChooseRideBottomSheet } from './useChooseRideBottomSheet';
 import Header from './components/Header';
 import SectionHeader from './components/SectionHeader';
 import Footer from './components/Footer';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 interface ChooseRideBottomSheetProps {
     onChange: (index: number) => void;
@@ -18,6 +19,7 @@ interface ChooseRideBottomSheetProps {
 }
 
 const ChooseRideBottomSheet = ({ onChange, mapDirections }: ChooseRideBottomSheetProps) => {
+    const insets = useSafeAreaInsets();
     const { models, operations } = useChooseRideBottomSheet({ onChange });
 
     const renderSectionHeader = ({ section }: { section: SectionListData<RideItem> }) => {
@@ -44,7 +46,11 @@ const ChooseRideBottomSheet = ({ onChange, mapDirections }: ChooseRideBottomShee
     
     return (
         <>
-            <BottomSheet index={1} onChange={operations.handleBottomSheetChange} snapPoints={rideSheetSnapPoints}>
+            <BottomSheet 
+                index={1} 
+                onChange={operations.handleBottomSheetChange} 
+                snapPoints={rideSheetSnapPoints(insets)}
+            >
                 <BottomSheetSectionList 
                     ListHeaderComponent={
                         <Header />
