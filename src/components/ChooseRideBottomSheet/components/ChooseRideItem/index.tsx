@@ -24,7 +24,7 @@ const ChooseRideItem = ({ title, description, price, selected, onPress, maxPasse
     
     return (
         <StyledPressable selected={selected} onPress={onPress}>
-            <CarImage source={require("@/assets/icon.png")} />
+            <CarImage source={require("@/assets/UberX.jpeg")} />
             <Spacer width={scale(5)} />
             <TextContainer>
                 <Container>

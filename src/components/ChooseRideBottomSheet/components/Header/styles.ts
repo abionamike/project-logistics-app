@@ -3,5 +3,5 @@ import { scale } from "react-native-size-matters";
 
 export const Container = styled.View({
     height: scale(50),
-    alignItems: 'center'
+    alignItems: 'center',
 })
