@@ -1,9 +1,15 @@
-import { RideItem } from "@/src/types/rideItems"
+import type{ RideItem } from "@/src/types/rideItems"
 import { useState } from "react"
 import { ridesData } from "./mockData"
 
-export const useChooseRideBottomSheet = () => {
+interface UseChooseRideBottomSheetProps {
+    onChange: (index: number) => void;
+}
+
+export const useChooseRideBottomSheet = ({ onChange }: UseChooseRideBottomSheetProps) => {
     const [selectedRide, setSelectedRide] = useState<RideItem>(ridesData[0].data[0]);
+
+    const [snapIndex, setSnapIndex] = useState(1);
 
     const handleRideItemPress = (item: RideItem) => {
         return () => {
@@ -11,8 +17,13 @@ export const useChooseRideBottomSheet = () => {
         }
     }
 
+    const handleBottomSheetChange = (index: number) => {
+        setSnapIndex(index);
+        onChange(index);
+    }
+
     return {
-        models: { selectedRide },
-        operations: { handleRideItemPress }
+        models: { selectedRide, snapIndex },
+        operations: { handleRideItemPress, handleBottomSheetChange }
     };
 }

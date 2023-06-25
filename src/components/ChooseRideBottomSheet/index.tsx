@@ -10,6 +10,7 @@ import type { MapDirectionsResponse } from 'react-native-maps-directions';
 import { useChooseRideBottomSheet } from './useChooseRideBottomSheet';
 import Header from './components/Header';
 import SectionHeader from './components/SectionHeader';
+import Footer from './components/Footer';
 
 interface ChooseRideBottomSheetProps {
     onChange: (index: number) => void;
@@ -17,19 +18,20 @@ interface ChooseRideBottomSheetProps {
 }
 
 const ChooseRideBottomSheet = ({ onChange, mapDirections }: ChooseRideBottomSheetProps) => {
-    const { models, operations } = useChooseRideBottomSheet();
+    const { models, operations } = useChooseRideBottomSheet({ onChange });
+    const isBottomSheetExpanded = models.snapIndex === 2;
 
     const renderSectionHeader = ({ section }: { section: SectionListData<RideItem> }) => {
-        return (
+        return isBottomSheetExpanded ? (
             <SectionHeader title={section.title} />
-        )
+        ) : null;
     }
     
     const renderSectionItem: SectionListRenderItem<RideItem> = ({ item }) => {
         return (
             <ChooseRideItem 
                 key={item.id} 
-                variant='compact' 
+                variant={isBottomSheetExpanded ? "expanded" : "compact"} 
                 onPress={operations.handleRideItemPress(item)} 
                 title={item.type}
                 price={calculateRidePrice(item.price, mapDirections)}
@@ -42,17 +44,20 @@ const ChooseRideBottomSheet = ({ onChange, mapDirections }: ChooseRideBottomShee
     }
     
     return (
-        <BottomSheet index={1} onChange={onChange} snapPoints={rideSheetSnapPoints}>
-            <BottomSheetSectionList 
-                ListHeaderComponent={
-                    <Header />
-                }
-                renderItem={renderSectionItem}
-                sections={ridesData} 
-                renderSectionHeader={renderSectionHeader}
-                stickySectionHeadersEnabled={false}
-            />
-        </BottomSheet>
+        <>
+            <BottomSheet index={1} onChange={operations.handleBottomSheetChange} snapPoints={rideSheetSnapPoints}>
+                <BottomSheetSectionList 
+                    ListHeaderComponent={
+                        <Header />
+                    }
+                    renderItem={renderSectionItem}
+                    sections={ridesData} 
+                    renderSectionHeader={renderSectionHeader}
+                    stickySectionHeadersEnabled={false}
+                />
+            </BottomSheet>
+            <Footer />
+        </>
     )
 }
 

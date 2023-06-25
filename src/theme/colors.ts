@@ -3,7 +3,7 @@ const pallete = {
     black: "#000",
     grey: "rgba(34, 34, 34, 0.8)",
     lightGrey: "rgba(100, 100, 100, 0.35)",
-    lightergrey: "rgba(100, 100, 100, 0.1)",
+    lighterGrey: "rgba(100, 100, 100, 0.1)",
     blue: "#4A80F5"
 }
 
@@ -22,7 +22,7 @@ export const colors = {
             squareColor: pallete.black
         },
         destinationInput: {
-            disabledBackground: pallete.lightergrey,
+            disabledBackground: pallete.lighterGrey,
             activeBackground: pallete.lightGrey
         },
         destinationModal: {
@@ -39,6 +39,11 @@ export const colors = {
         chooseRideItem: {
             selectedBorderColor: pallete.black,
             borderColor: pallete.white
+        },
+        rideBottomSheet: {
+            footerRightIconBackground: pallete.lighterGrey,
+            footerLeftIconBackground: pallete.black,
+            footerLeftIconColor: pallete.white,
         }
     },
     screens: {
