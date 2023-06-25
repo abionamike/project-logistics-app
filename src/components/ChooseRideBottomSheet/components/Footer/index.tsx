@@ -9,17 +9,23 @@ import CustomText from '@/components/common/CustomText';
 import ActionButton from '@/components/common/ActionBotton';
 import { RideItem } from '@/src/types/rideItems';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 
 interface FooterProps {
-    selectedRide: RideItem
+    selectedRide: RideItem,
+    offset: SharedValue<number>
 }
 
-const Footer = ({ selectedRide }: FooterProps) => {
+const Footer = ({ selectedRide, offset }: FooterProps) => {
     const theme = useTheme();
     const insets = useSafeAreaInsets();
 
+    const animatedStyle = useAnimatedStyle(() => ({
+        transform: [{ translateY: withTiming(offset.value) }]
+    }));
+
     return (
-        <Container insets={insets}>
+        <Container style={animatedStyle} insets={insets}>
             <Divider />
             <Spacer height={scale(15)} />
             <HorizontalContainer>

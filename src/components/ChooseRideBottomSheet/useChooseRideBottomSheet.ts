@@ -1,6 +1,8 @@
 import type{ RideItem } from "@/src/types/rideItems"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { ridesData } from "./mockData"
+import { useSharedValue } from "react-native-reanimated";
+import { scale } from "react-native-size-matters";
 
 interface UseChooseRideBottomSheetProps {
     onChange: (index: number) => void;
@@ -10,6 +12,17 @@ export const useChooseRideBottomSheet = ({ onChange }: UseChooseRideBottomSheetP
     const [selectedRide, setSelectedRide] = useState<RideItem>(ridesData[0].data[0]);
 
     const [snapIndex, setSnapIndex] = useState(1);
+    const footerOffset = useSharedValue(0);
+
+    const isBottomSheetExpanded = snapIndex === 2;
+
+    useEffect(() => {
+        if(isBottomSheetExpanded) {
+            footerOffset.value = scale(200);
+        } else {
+            footerOffset.value = 0;
+        }
+    }, [footerOffset, isBottomSheetExpanded]);
 
     const handleRideItemPress = (item: RideItem) => {
         return () => {
@@ -23,7 +36,7 @@ export const useChooseRideBottomSheet = ({ onChange }: UseChooseRideBottomSheetP
     }
 
     return {
-        models: { selectedRide, snapIndex },
+        models: { selectedRide, snapIndex, isBottomSheetExpanded, footerOffset },
         operations: { handleRideItemPress, handleBottomSheetChange }
     };
 }
