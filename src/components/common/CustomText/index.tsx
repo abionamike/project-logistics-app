@@ -3,7 +3,8 @@ import { BodyText, CaptionText, HeaderText, SmallHeaderText, TitleText } from '.
 
 interface CustomTextProp {
     variant: 'body' | 'title' | 'caption' | 'header' | 'smHeader',
-    children: string
+    children: string;
+    color?: string
 }
 const getComponent = (variant: CustomTextProp['variant']) => {
     switch (variant) {
@@ -22,11 +23,17 @@ const getComponent = (variant: CustomTextProp['variant']) => {
     }
 }
 
-const CustomText = ({ variant, children }: CustomTextProp) => {
+const CustomText = ({ variant, children, color }: CustomTextProp) => {
     const Component = getComponent(variant);
 
+    const sharedProps = {
+        style: {
+            ...(color ? { color } : {}),
+        }
+    }
+
     return (
-        <Component>
+        <Component { ...sharedProps }>
             {children}
         </Component>
     );

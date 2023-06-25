@@ -56,7 +56,7 @@ const ChooseRideBottomSheet = ({ onChange, mapDirections }: ChooseRideBottomShee
                     stickySectionHeadersEnabled={false}
                 />
             </BottomSheet>
-            <Footer />
+            <Footer selectedRide={models.selectedRide} />
         </>
     )
 }

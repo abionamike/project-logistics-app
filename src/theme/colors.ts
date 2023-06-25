@@ -44,6 +44,10 @@ export const colors = {
             footerRightIconBackground: pallete.lighterGrey,
             footerLeftIconBackground: pallete.black,
             footerLeftIconColor: pallete.white,
+        },
+        actionButton: {
+            backgrounColor: pallete.black,
+            fontColor: pallete.white
         }
     },
     screens: {

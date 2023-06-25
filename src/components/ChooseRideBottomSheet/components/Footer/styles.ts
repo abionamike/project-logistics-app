@@ -1,19 +1,24 @@
 import styled from "@emotion/native";
 import Animated from "react-native-reanimated";
+import { EdgeInsets } from "react-native-safe-area-context";
 import { scale } from "react-native-size-matters";
 
-export const Container = styled(Animated.View)(({ theme }) => ({
-    height: scale(120),
+type Container = {
+    insets: EdgeInsets
+}
+
+export const Container = styled(Animated.View)<Container>(({ theme, insets }) => ({
+    height: scale(120) + (insets.bottom || scale(10)),
     backgroundColor: theme.colors.common.background,
     width: '100%',
-    alignItems: 'center'
+    alignItems: 'center',
 }));
 
 export const HorizontalContainer = styled.View({
     flexDirection: "row",
     alignSelf: "flex-start",
     alignItems: "center",
-    paddingHorizontal: scale(20)
+    paddingHorizontal: scale(20),
 });
 
 export const IconsContainer = styled.View(({ theme }) => ({
@@ -40,3 +45,8 @@ export const LeftIconContainer = styled.View(({ theme }) => ({
 export const TextContainer = styled.View({
     flex: 1
 });
+
+export const ButtonContainer = styled.View({
+    width: '100%',
+    paddingHorizontal: scale(20),
+})

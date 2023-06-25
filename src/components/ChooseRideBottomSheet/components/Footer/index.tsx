@@ -1,17 +1,25 @@
 import React from 'react'
-import { Container, HorizontalContainer, IconsContainer, LeftIconContainer, TextContainer } from './styles';
+import { ButtonContainer, Container, HorizontalContainer, IconsContainer, LeftIconContainer, TextContainer } from './styles';
 import Divider from '@/components/common/Divider';
 import Spacer from '@/components/common/Spacer';
 import { scale } from 'react-native-size-matters';
 import { Ionicons } from '@expo/vector-icons'
 import { useTheme } from '@emotion/react';
 import CustomText from '@/components/common/CustomText';
+import ActionButton from '@/components/common/ActionBotton';
+import { RideItem } from '@/src/types/rideItems';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-const Footer = () => {
+interface FooterProps {
+    selectedRide: RideItem
+}
+
+const Footer = ({ selectedRide }: FooterProps) => {
     const theme = useTheme();
+    const insets = useSafeAreaInsets();
 
     return (
-        <Container>
+        <Container insets={insets}>
             <Divider />
             <Spacer height={scale(15)} />
             <HorizontalContainer>
@@ -40,6 +48,9 @@ const Footer = () => {
                 />
             </HorizontalContainer>
             <Spacer height={scale(15)} />
+            <ButtonContainer>
+                <ActionButton text={`Choose: ${selectedRide.type}`} />
+            </ButtonContainer>
         </Container>
     )
 }
