@@ -31,7 +31,7 @@ Before running the Logistics App, make sure you have the following installed:
 **2. Clone this project**
 
 ```
-$  git clone https://github.com/abionamike/logistics_app.git
+$  git clone https://github.com/abionamike/project-logistics-app.git
 ```
 
 Then, Enter the project
