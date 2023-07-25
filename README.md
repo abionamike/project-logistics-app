@@ -1,6 +1,3 @@
-# project-logistics-app
-School Final Year Project Logistics App for Solving the Issue of Logistics and Traffic Congestion in Lagos, Nigeria
-
 # Logistics App Project
 
 This Logistics App project creation was built with the React Native and Expo framework with Google Maps API.
@@ -16,8 +13,8 @@ Changes are welcomed based on your requirements.
 
 ## 📸 ScreenShots
 
-| <img src="assets/main.png" />     | <img src="assets/search.png" />  |
-| <img src="assets/search2.png" />  | <img src="assets/route.png" />   |
+| <img src="assets/main.png" width="400" />     | <img src="assets/search.png" width="400" />  |
+| <img src="assets/search2.png" width="400" />  | <img src="assets/route.png" width="400" />   |
 
 ## Prerequisites
 
